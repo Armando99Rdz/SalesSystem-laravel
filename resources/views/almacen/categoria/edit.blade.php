@@ -1,4 +1,5 @@
 
+
 @extends('layouts.admin')
 
 @section('contenido')
@@ -11,7 +12,7 @@
                     Almacén
                 </div>
                 <h2 class="page-title">
-                    Nueva categoría
+                    Editando categoría {{$categoria -> nombre}}
                 </h2>
             </div>
         </div>
@@ -30,12 +31,7 @@
     @endif
 
 
-    {!! Form::open( array(
-                    'url' => 'almacen/categoria',
-                    'method' => 'POST',
-                    'autocomplete' => 'off'
-                ))
-    !!}
+    {!! Form::model($categoria, ['method' => 'PATCH', 'route'=>['categoria.update', $categoria->idcategoria]])!!}
     {{Form::token()}}
 
     <div class="card">
@@ -43,12 +39,13 @@
 
             <div class="mb-3">
                 <label class="form-label required">Nombre</label>
-                <input type="text" class="form-control" name="nombre" placeholder="Nombre de la categoría">
+                <input type="text" class="form-control" name="nombre" placeholder="Nombre de la categoría"
+                    value="{{$categoria -> nombre}}">
             </div>
             <div class="mb-3">
                 <div>
                     <label class="form-label">Descripción</label>
-                    <textarea class="form-control" rows="3" name="descripcion" placeholder="Describa la nueva categoría"></textarea>
+                    <textarea class="form-control" rows="3" name="descripcion" placeholder="Describa la nueva categoría">{{$categoria->descripcion}}</textarea>
                 </div>
             </div>
         </div>

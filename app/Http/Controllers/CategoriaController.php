@@ -35,10 +35,11 @@ class CategoriaController extends Controller {
 
     public function create(){
         return view('almacen.categoria.create');
+        //return view('almacen.categoria.index');
     }
 
     /**
-     * Para crear una categoria
+     * Si el metodo del request es POST ejecuta store y recibe los valores del request
      * @param CategoriaFormRequest $request
      */
     public function store(CategoriaFormRequest $request){
@@ -69,30 +70,31 @@ class CategoriaController extends Controller {
     }
 
     public function edit($idCategoria){
-        try {
+  /*      try {
             $categoria = Categoria::findOrFail($idCategoria); // busca la categoria, de lo contrario devuelve un error
         }catch (ModelNotFoundException $exception){
             echo 'No se pudo ejecutar findOrFail() con esta categoria' . $exception;
             die();
         }
-
+*/
         return view('almacen.categoria.edit', [
-            "categoria" => $categoria
+            "categoria" => Categoria::findOrFail($idCategoria)
         ]);
     }
 
     /**
-     * Actualizar categoria
+     * Si el metodo del request es PATCH ejecuta update() recibiendo los valores y el id de la categoria a actualizar
      * @param CategoriaFormRequest $request
      * @param $idCategoria: para acutalizar
      */
     public function update(CategoriaFormRequest $request, $idCategoria){
-        try {
+        /*try {
             $categoria = Categoria::findOrFail($idCategoria);
         }catch (ModelNotFoundException $ex){
             echo 'No se pudo ejecutar findOrFail() ' . $ex;
             die();
-        }
+        }*/
+        $categoria = Categoria::findOrFail($idCategoria);
 
         $categoria -> nombre = $request -> get('nombre');
         $categoria -> descripcion = $request -> get('descripcion');
@@ -100,16 +102,16 @@ class CategoriaController extends Controller {
         return Redirect::to('almacen/categoria');
     }
 
+    /**
+     * @param $idCategoria
+     * @return \Illuminate\Http\RedirectResponse
+     * Si el metodo es delete ejecuta destroy() recibiendo el id de la categoria a eliminar
+     */
     public function destroy($idCategoria){
-        try {
-            $categoria = Categoria::findOrFail($idCategoria);
-        }catch (ModelNotFoundException $ex){
-            echo 'No se pudo ejecutar findOrFail() ' . $ex;
-            die();
-        }
-
-        $categoria -> condicion = '0';
-        $categoria -> update();
+        $categoria = Categoria::findOrFail($idCategoria);
+        //$categoria -> condicion = '0'; // cambiar la categoria a no disponible, NO elimina
+        //$categoria -> update(); // actualiza
+        $categoria -> destroy($idCategoria); // eliminar la categoria
         return Redirect::to('almacen/categoria');
     }
 }

@@ -7,8 +7,13 @@
         <div class="ml-2 d-inline-block">
 
             {{-- formulario para enviar string de busqueda (busqueda filtrada) --}}
-            {!! Form::open( array('url' => 'almacen/categoria','method' => 'GET','autocomplete' => 'off','role' => 'search'))!!}
-
+            {!! Form::open( array(
+                'url' => 'almacen/categoria',
+                'method' => 'GET',
+                'autocomplete' => 'off',
+                'role' => 'search'
+                ))
+            !!}
 
             <div class="row row-sm">
                 <div class="col">
