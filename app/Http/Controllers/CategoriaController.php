@@ -109,9 +109,9 @@ class CategoriaController extends Controller {
      */
     public function destroy($idCategoria){
         $categoria = Categoria::findOrFail($idCategoria);
-        //$categoria -> condicion = '0'; // cambiar la categoria a no disponible, NO elimina
-        //$categoria -> update(); // actualiza
-        $categoria -> destroy($idCategoria); // eliminar la categoria
+        $categoria -> condicion = '0'; // cambiar la categoria a no disponible, NO elimina
+        $categoria -> update(); // actualiza
+        //$categoria -> destroy($idCategoria); // eliminar la categoria
         return Redirect::to('almacen/categoria');
     }
 }
