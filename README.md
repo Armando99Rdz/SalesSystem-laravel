@@ -4,5 +4,7 @@
 ![demo-categorias-view]( ss-categorias.png )
 
 ### routes
-    - `almacen/categorias`
-    - `almacen/articulo`   
+    - `/almacen/categoria`
+    - `/almacen/articulo`   
+
+`php artisan serve` 

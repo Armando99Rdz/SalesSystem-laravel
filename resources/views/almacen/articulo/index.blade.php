@@ -60,9 +60,9 @@
                         </td>
                         <td>
                             @if( empty($art->imagen) )
-                                <span class="avatar">{{ strtoupper($art->nombre[0]) }}</span>
+                                <span class="avatar avatar-xl">{{ strtoupper($art->nombre[0]) }}</span>
                             @else
-                                <img class="avatar-medium" src="{{asset('imagenes/articulos/'.$art->imagen)}}" alt="{{$art->nombre}}">
+                                <img class="product-img-medium" src="{{asset('imagenes/articulos/'.$art->imagen)}}" alt="{{$art->nombre}}">
                             @endif
                         </td>
                         <td class="text-bold" >
