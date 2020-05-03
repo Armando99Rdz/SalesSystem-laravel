@@ -5,6 +5,6 @@
 
 ### routes
     - `/almacen/categoria`
-    - `/almacen/articulo`   
+    - `/ventas/cliente`   
 
 `php artisan serve` 
