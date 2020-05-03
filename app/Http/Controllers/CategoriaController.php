@@ -24,7 +24,7 @@ class CategoriaController extends Controller {
             $categorias = DB::table('categoria') -> where('nombre','LIKE', '%' . $query . '%')
             -> where('condicion', '=', '1') // solo las categorias activas
             -> orderBy('idcategoria', 'desc') // ordena por id descendentemente
-            -> paginate(7); // paginar de 7 en 7 las categorias
+            -> paginate(10); // paginar de 7 en 7 las categorias
 
             return view('almacen.categoria.index', [
                 "categorias" => $categorias, // se le manda las categorias
