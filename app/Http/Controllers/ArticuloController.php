@@ -28,6 +28,7 @@ class ArticuloController extends Controller
                 -> select('a.idarticulo', 'a.nombre', 'a.codigo', 'a.stock', 'c.nombre as categoria',
                     'a.descripcion', 'a.imagen', 'a.estado')
                 -> where('a.nombre','LIKE', '%' . $query . '%') # filtrando nombre articulo
+                -> orwhere('a.codigo','LIKE', '%' . $query . '%') # filtrado por codigo
                 -> orderBy('a.idarticulo', 'desc') # ordena por id descendentemente
                 -> paginate(7); # paginar de 7 en 7
 

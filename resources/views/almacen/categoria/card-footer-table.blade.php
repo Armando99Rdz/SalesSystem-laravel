@@ -1,7 +1,9 @@
 
 <!-- card footer para tabla, incluye paginacion -->
+<div class="ml-auto">
+    {{$categorias -> render()}}
+</div>
 
-{{$categorias -> render()}}
 
 <!-- default pagination template
 <div class="card-footer d-flex align-items-center">

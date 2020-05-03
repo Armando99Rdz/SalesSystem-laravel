@@ -1,0 +1,16 @@
+
+.avatar{
+    height: 50px;
+    width: 50px;
+}
+
+.avatar-medium{
+    height: 70px;
+    width: 100px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.badge{
+    font-size: 12px;
+}

@@ -22,6 +22,7 @@
     <link href="{{asset('dist/libs/jqvmap/dist/jqvmap.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('dist/css/tabler.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('dist/css/demo.min.css')}}" rel="stylesheet"/>
+    <link href="{{asset('dist/css/mycustom.css')}}" rel="stylesheet"/>
     <style>
         body {
             display: none;
