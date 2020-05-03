@@ -50,7 +50,7 @@ class ProveedorController extends Controller {
         $persona -> email = $request -> get('email');
 
         $persona -> save();
-        return Redirect::to('compras/cliente');
+        return Redirect::to('compras/proveedor');
     }
 
 
