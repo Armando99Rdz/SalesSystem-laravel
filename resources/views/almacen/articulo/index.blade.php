@@ -12,7 +12,7 @@
                 </div>
                 <h2 class="page-title">
                     Artículos
-                    <a href="categoria/create" class="btn btn-outline-primary" style="padding:4px;font-size:14px;">
+                    <a href="articulo/create" class="btn btn-outline-primary" style="padding:4px;font-size:14px;">
                         Nuevo
                     </a>
                 </h2>

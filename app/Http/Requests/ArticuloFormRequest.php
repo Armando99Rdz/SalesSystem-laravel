@@ -28,7 +28,7 @@ class ArticuloFormRequest extends FormRequest
             'nombre' => 'required|max:100',
             'stock' => 'required|numeric',
             'descripcion' => 'max:512', // opcional
-            'imagen' => 'mimes:jpeg,bmp,png,jpg' // formato de imagenes permitidas
+            'imagen' => 'mimes:jpeg,png,jpg,gif|max:1000' // formato de imagenes permitidas
         ];
     }
 }

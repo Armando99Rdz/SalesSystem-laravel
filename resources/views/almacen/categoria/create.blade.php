@@ -53,12 +53,14 @@
             </div>
         </div>
         <div class="card-footer">
-            <button type="reset" class="btn btn-link link-secondary" data-dismiss="modal">
-                Cancelar
-            </button>
-            <button type="submit" class="btn btn-primary ml-auto">
-                Guardar
-            </button>
+            <div class="ml-auto text-right">
+                <button type="reset" class="btn btn-link link-secondary" data-dismiss="modal">
+                    Cancelar
+                </button>
+                <button type="submit" class="btn btn-primary ml-auto">
+                    Guardar
+                </button>
+            </div>
         </div>
     </div>
 

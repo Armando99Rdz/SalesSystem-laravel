@@ -56,13 +56,21 @@ class ArticuloController extends Controller
         $articulo -> descripcion = $request -> get('descripcion');
         $articulo -> estado = 'Activo'; # cuando se crea el articulo, por defecto esta activo
 
+        if($request -> hasFile('imagen')){
+            $file = $request -> file('imagen');
+            $filename = time().'.'.$request -> imagen ->extension();
+            $file -> move(public_path().'/imagenes/articulos/', $filename);
+            $articulo -> imagen = $filename;
+        }
+        /*
+        # Clase INPUT fue ELIMINADA de a partir de LARAVEL 5
         # validar la subida de img
         if(Input::hasFile('imagen')){
             $file = Input::file('imagen');
             $file -> move(public_path() . '/imagenes/articulos/', $file -> getClientOriginalName());
             $articulo -> imagen = $file -> getClientOriginalName();
         }
-
+        */
         $articulo -> save();
         return Redirect::to('almacen/articulo');
     }
@@ -93,10 +101,11 @@ class ArticuloController extends Controller
         $articulo -> descripcion = $request -> get('descripcion');
 
         # validar la subida de img
-        if(Input::hasFile('imagen')){
-            $file = Input::file('imagen');
-            $file -> move(public_path() . '/imagenes/articulos/', $file -> getClientOriginalName());
-            $articulo -> imagen = $file -> getClientOriginalName();
+        if($request -> hasFile('imagen')){
+            $file = $request -> file('imagen');
+            $filename = time().'.'.$request -> imagen ->extension();
+            $file -> move(public_path().'/imagenes/articulos/', $filename);
+            $articulo -> imagen = $filename;
         }
 
         $articulo -> update();
