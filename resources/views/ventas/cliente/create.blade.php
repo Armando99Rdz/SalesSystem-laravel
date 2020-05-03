@@ -8,16 +8,16 @@
             <div class="col-auto">
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
-                    Almacén
+                    Ventas
                 </div>
                 <h2 class="page-title">
-                    Nuevo artículo
+                    Nuevo cliente
                 </h2>
             </div>
         </div>
     </div>
 
-    <!--  en caso de no cumplir con las reglas de CategoriaFormRequest  -->
+    <!--  en caso de no cumplir con las reglas de ClienteFormRequest  -->
     @if( count($errors) > 0 ) <!-- existen errores -->
     <div class="alert alert-danger alert-dismissible" role="alert">
         <ul>
@@ -31,9 +31,7 @@
 
 
     {!! Form::open( array(
-                    'url' => 'almacen/articulo',
-                    'files' => 'true',
-                    'enctype'=>'multipart/form-data',
+                    'url' => 'ventas/cliente',
                     'method' => 'POST',
                     'autocomplete' => 'off'
                 ))
@@ -42,56 +40,49 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Editar</h3>
+            <h3 class="card-title">Detalles del nuevo cliente</h3>
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="mb-3">
                         <label class="form-label required">Nombre</label>
-                        <input type="text" name="nombre" class="form-control">
+                        <input type="text" name="nombre" class="form-control" value="{{old('nombre')}}">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3">
-                        <label for="idcategoria" class="form-label required">Categoría</label>
-                        <select name="idcategoria" class="form-select">
-                            @foreach($categorias as $cat)
-                                <option value="{{$cat->idcategoria}}">{{$cat->nombre}}</option>
-                            @endforeach
+                        <label class="form-label required">Tipo de identificación</label>
+                        <select name="tipo_documento" class="form-select">
+                            <option value="INE/DNI">INE/DNI</option>
+                            <option value="RFC">RFC</option>
+                            <option value="INAPAM">INAPAM</option>
+                            <option value="Pasaporte">Pasaporte</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3">
-                        <label class="form-label required">Código</label>
-                        <input type="text" class="form-control" name="codigo">
+                        <label class="form-label required">Número de identificación</label>
+                        <input type="text" class="form-control" name="num_documento" value="{{old('num_documento')}}">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3">
-                        <label class="form-label required">Stock</label>
-                        <input type="number" class="form-control" min="1" name="stock">
-                        <small class="form-hint">Cantidad de producto en almacén</small>
+                        <label class="form-label">Dirección</label>
+                        <input type="text" name="direccion" class="form-control" value="{{old('direccion')}}">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3">
-                        <label class="form-label">Descripción</label>
-                        <textarea class="form-control" rows="2" name="descripcion"></textarea>
-                        <small class="form-hint">Algunas características del producto</small>
+                        <label class="form-label">Telefono</label>
+                        <input type="text" name="telefono" class="form-control" placeholder="(000) 000000">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3">
-                        <div class="form-label">Subir imagen</div>
-                        <div class="form-file">
-                            <input type="file" class="form-file-input" name="imagen">
-                            <label class="form-file-label" for="customFile">
-                                <span class="form-file-text">Seleccione el archivo...</span>
-                                <span class="form-file-button">Buscar</span>
-                            </label>
-                        </div>
+                        <label class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" name="email" value="{{old('email')}}" placeholder="ejemplo@ejemplo.com">
                     </div>
                 </div>
             </div>

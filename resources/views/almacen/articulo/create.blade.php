@@ -42,14 +42,14 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Editar</h3>
+            <h3 class="card-title">Detalles del nuevo artículo</h3>
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="mb-3">
                         <label class="form-label required">Nombre</label>
-                        <input type="text" name="nombre" class="form-control">
+                        <input type="text" name="nombre" class="form-control" value="{{old('nombre')}}">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -65,20 +65,20 @@
                 <div class="col-lg-6">
                     <div class="mb-3">
                         <label class="form-label required">Código</label>
-                        <input type="text" class="form-control" name="codigo">
+                        <input type="text" class="form-control" name="codigo" value="{{old('codigo')}}">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3">
                         <label class="form-label required">Stock</label>
-                        <input type="number" class="form-control" min="1" name="stock">
+                        <input type="number" class="form-control" min="1" name="stock" value="{{old('stock')}}">
                         <small class="form-hint">Cantidad de producto en almacén</small>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3">
                         <label class="form-label">Descripción</label>
-                        <textarea class="form-control" rows="2" name="descripcion"></textarea>
+                        <textarea class="form-control" rows="2" name="descripcion">{{old('descripcion')}}</textarea>
                         <small class="form-hint">Algunas características del producto</small>
                     </div>
                 </div>

@@ -9,10 +9,10 @@
             <div class="col-auto">
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
-                    Almacén
+                    Ventas
                 </div>
                 <h2 class="page-title">
-                    Editando artículo {{$articulo -> nombre}}
+                    Editando cliente {{$persona -> nombre}}
                 </h2>
             </div>
         </div>
@@ -31,84 +31,80 @@
     @endif
 
 
-    {!! Form::model($articulo, ['method' => 'PATCH', 'route'=>['articulo.update', $articulo->idarticulo], 'files' => 'true'])!!}
+    {!! Form::model($persona, ['method' => 'PATCH', 'route'=>['cliente.update', $persona->idpersona]])!!}
     {{Form::token()}}
 
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Editar artículo</h3>
+            <h3 class="card-title">Editar cliente</h3>
         </div>
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="mb-3">
                         <label class="form-label required">Nombre</label>
-                        <input type="text" name="nombre" class="form-control" value="{{$articulo->nombre}}">
+                        <input type="text" name="nombre" class="form-control" value="{{$persona->nombre}}">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3">
-                        <label for="idcategoria" class="form-label required">Categoría</label>
-                        <select name="idcategoria" class="form-select">
-                            @foreach($categorias as $cat)
-                                @if($cat -> idcategoria == $articulo -> idcategoria)
-                                    <option value="{{$cat->idcategoria}}" selected>{{$cat->nombre}}</option>
-                                @else
-                                    <option value="{{$cat->idcategoria}}">{{$cat->nombre}}</option>
-                                @endif
-                            @endforeach
+                        <label class="form-label required">Tipo de identificación</label>
+                        <select name="tipo_documento" class="form-select">
+                            @if($persona->tipo_documento == 'INE/DNI')
+                                <option value="INE/DNI" selected>INE/DNI</option>
+                                <option value="RFC">RFC</option>
+                                <option value="INAPAM">INAPAM</option>
+                                <option value="Pasaporte">Pasaporte</option>
+                            @elseif($persona->tipo_documento == 'RFC')
+                                <option value="INE/DNI">INE/DNI</option>
+                                <option value="RFC" selected>RFC</option>
+                                <option value="INAPAM">INAPAM</option>
+                                <option value="Pasaporte">Pasaporte</option>
+                            @elseif($persona->tipo_documento == 'INAPAM')
+                                <option value="INE/DNI">INE/DNI</option>
+                                <option value="RFC">RFC</option>
+                                <option value="INAPAM" selected>INAPAM</option>
+                                <option value="Pasaporte">Pasaporte</option>
+                            @else
+                                <option value="INE/DNI">INE/DNI</option>
+                                <option value="RFC">RFC</option>
+                                <option value="INAPAM">INAPAM</option>
+                                <option value="Pasaporte" selected>Pasaporte</option>
+                            @endif
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3">
-                        <label class="form-label required">Código</label>
-                        <input type="text" class="form-control" name="codigo" value="{{$articulo->codigo}}">
+                        <label class="form-label required">Número de identificación</label>
+                        <input type="text" class="form-control" name="num_documento" value="{{$persona->num_documento}}">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3">
-                        <label class="form-label required">Stock</label>
-                        <input type="number" class="form-control" min="1" name="stock" value="{{$articulo->stock}}">
-                        <small class="form-hint">Cantidad de producto en almacén</small>
+                        <label class="form-label">Dirección</label>
+                        <input type="text" name="direccion" class="form-control" value="{{$persona->direccion}}">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3">
-                        <label class="form-label">Descripción</label>
-                        <textarea class="form-control" rows="4" name="descripcion">{{$articulo->descripcion}}</textarea>
-                        <small class="form-hint">Algunas características del producto</small>
+                        <label class="form-label">Telefono</label>
+                        <input type="text" name="telefono" class="form-control" placeholder="(000) 000000" value="{{$persona->telefono}}">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3">
-                        <div class="form-label">Subir imagen</div>
-                        <div class="form-file">
-                            <input type="file" class="form-file-input" name="imagen">
-                            <label class="form-file-label" for="customFile">
-                                <span class="form-file-text">Seleccione el archivo...</span>
-                                <span class="form-file-button">Buscar</span>
-                            </label>
-                        </div>
+                        <label class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" name="email" value="{{$persona->email}}" placeholder="ejemplo@ejemplo.com">
                     </div>
-                    @if(!empty($articulo->imagen))
-                        <div class="text-center">
-                            <span class="avatar avatar-xl"
-                                  style="background-image: url('{{asset('imagenes/articulos/'.$articulo->imagen)}}')">
-                            </span>
-                            <small class="form-hint m-auto">Imagen actual del artículo</small>
-                        </div>
-                    @else
-                        <small class="form-hint m-auto">Este artículo no tiene una imagen</small>
-                    @endif
                 </div>
             </div>
         </div>
         <div class="card-footer">
             <div class="ml-auto text-right">
-                <button type="reset" class="btn btn-link link-secondary">
+                <a href="/ventas/cliente" type="reset" class="btn btn-link link-secondary">
                     Cancelar
-                </button>
+                </a>
                 <button type="submit" class="btn btn-primary">
                     Guardar
                 </button>

@@ -50,9 +50,9 @@
             </div>
         </div>
         <div class="card-footer">
-            <button type="reset" class="btn btn-link link-secondary" data-dismiss="modal">
+            <a href="/almacen/categoria" type="reset" class="btn btn-link link-secondary">
                 Cancelar
-            </button>
+            </a>
             <button type="submit" class="btn btn-primary ml-auto">
                 Guardar
             </button>

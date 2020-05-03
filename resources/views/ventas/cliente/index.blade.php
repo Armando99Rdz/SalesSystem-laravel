@@ -12,7 +12,7 @@
                 </div>
                 <h2 class="page-title">
                     Clientes
-                    <a href="ventas/cliente" class="btn btn-outline-primary" style="padding:4px;font-size:14px;">
+                    <a href="cliente/create" class="btn btn-outline-primary" style="padding:4px;font-size:14px;">
                         Nuevo
                     </a>
                 </h2>
@@ -42,8 +42,8 @@
                 <tr>
                     <th>ID</th>
                     <th>Nombre</th>
-                    <th>Tipo Doc.</th>
-                    <th>Número Doc.</th>
+                    <th>Tipo Identifación</th>
+                    <th>No. Identificación</th>
                     <th>Teléfono</th>
                     <th>Email</th>
                     <th>Acciones</th>

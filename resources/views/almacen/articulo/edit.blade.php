@@ -106,9 +106,9 @@
         </div>
         <div class="card-footer">
             <div class="ml-auto text-right">
-                <button type="reset" class="btn btn-link link-secondary">
+                <a href="/almacen/articulo" type="reset" class="btn btn-link link-secondary">
                     Cancelar
-                </button>
+                </a>
                 <button type="submit" class="btn btn-primary">
                     Guardar
                 </button>
