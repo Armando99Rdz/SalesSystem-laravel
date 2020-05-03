@@ -5,7 +5,7 @@ namespace salesSys\Http\Controllers;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Input;
+//use Illuminate\Support\Facades\Input;
 use salesSys\Http\Requests\ArticuloFormRequest;
 use salesSys\Articulo;
 use Illuminate\Support\Facades\DB;
