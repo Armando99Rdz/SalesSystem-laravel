@@ -19,7 +19,7 @@ class ClienteController extends Controller
 
             // para hacer busqueda filtrada de categorias:
             $query = trim($request -> get('searchText')); // texto a buscar
-            $personas = DB::table('personas')
+            $personas = DB::table('persona')
                 -> where('nombre','LIKE', '%' . $query . '%') # busqueda por nombre
                 -> where('tipo_persona', '=', 'Cliente') # a solo clientes
                 -> orwhere('num_documento','LIKE', '%' . $query . '%') # o busqueda por num de doc

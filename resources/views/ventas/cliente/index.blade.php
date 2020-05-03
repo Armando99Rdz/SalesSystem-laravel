@@ -8,11 +8,11 @@
             <div class="col-auto">
                 <!-- Page pre-title -->
                 <div class="page-pretitle">
-                    Almacén
+                    Ventas
                 </div>
                 <h2 class="page-title">
-                    Artículos
-                    <a href="articulo/create" class="btn btn-outline-primary" style="padding:4px;font-size:14px;">
+                    Clientes
+                    <a href="ventas/cliente" class="btn btn-outline-primary" style="padding:4px;font-size:14px;">
                         Nuevo
                     </a>
                 </h2>
@@ -33,7 +33,7 @@
 
     <div class="card">
         <!-- append card header con buscador/filtrado -->
-    @include('almacen.articulo.card-header-table')
+    @include('ventas.cliente.card-header-table')
 
     <!-- tabla de categorias -->
         <div class="table-responsive">
@@ -41,61 +41,45 @@
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Foto</th>
                     <th>Nombre</th>
-                    <th>Código</th>
-                    <th>Categoría</th>
-                    <th>Stock</th>
-                    <th>Estado</th>
+                    <th>Tipo Doc.</th>
+                    <th>Número Doc.</th>
+                    <th>Teléfono</th>
+                    <th>Email</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                @foreach($articulos as $art)
+                @foreach($personas as $p)
 
                     <tr>
                         <td class="text-bold">
-                            {{$art->idarticulo}}
-                        </td>
-                        <td>
-                            @if( empty($art->imagen) )
-                                <span class="avatar avatar-xl">{{ strtoupper($art->nombre[0]) }}</span>
-                            @else
-                                <img class="product-img-medium" src="{{asset('imagenes/articulos/'.$art->imagen)}}" alt="{{$art->nombre}}">
-                            @endif
+                            {{$p->idpersona}}
                         </td>
                         <td class="text-bold" >
-                            <strong>{{$art -> nombre}}</strong>
+                            <strong>{{$p->nombre}}</strong>
                         </td>
                         <td class="text-bold">
-                            {{$art -> codigo}}
+                            {{$p->tipo_documento}}
                         </td>
                         <td class="text-bold">
-                            {{$art -> categoria}}
+                            {{$p->num_documento}}
                         </td>
                         <td class="text-bold">
-                            @if($art->stock <= 5)
-                                <span class="badge bg-red">{{$art -> stock}}</span>
-                            @else
-                                {{$art -> stock}}
-                            @endif
+                            {{$p->telefono}}
                         </td>
                         <td class="text-bold">
-                            @if(strtoupper($art->estado) == "INACTIVO")
-                                <span class="badge bg-red-lt">{{$art -> estado}}</span>
-                            @else
-                                <span class="badge bg-lime-lt">{{$art -> estado}}</span>
-                            @endif
+                            {{$p->email}}
                         </td>
                         <td class="text-bold">
-                            <a href="{{ URL::action( 'ArticuloController@edit', $art -> idarticulo ) }}" class="m-2">Editar</a>
-                            <a href="#" class="link-danger m-2" data-toggle="modal" data-target="#confirm-delete-{{$art->idarticulo}}">Eliminar</a>
+                            <a href="{{ URL::action( 'ClienteController@edit', $p -> idpersona ) }}" class="m-2">Editar</a>
+                            <a href="#" class="link-danger m-2" data-toggle="modal" data-target="#confirm-delete-{{$p->idpersona}}">Eliminar</a>
                         </td>
                     </tr>
 
                     <!-- modal de confirmacion para eliminar -->
-                    @include('almacen.articulo.modals.delete')
+                    @include('ventas.cliente.modals.delete')
 
                 @endforeach
 
@@ -103,7 +87,7 @@
             </table>
         </div>
         <!-- append card footer con paginacion para la tabla -->
-        @include('almacen.articulo.card-footer-table')
+        @include('ventas.cliente.card-footer-table')
     </div>
 
 @endsection
