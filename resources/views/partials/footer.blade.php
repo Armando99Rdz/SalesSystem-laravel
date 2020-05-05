@@ -3,7 +3,7 @@
         <div class="row text-center align-items-center flex-row-reverse">
             <div class="col-lg-auto ml-lg-auto">
                 <ul class="list-inline list-inline-dots mb-0">
-                    <li class="list-inline-item"><a href="#" class="link-secondary">GitHub</a></li>
+                    <li class="list-inline-item"><a href="https://github.com/Armando99Rdz" target="_blank" class="link-secondary">GitHub</a></li>
                     <li class="list-inline-item"><a href="#" target="_blank" class="link-secondary">Linkedin</a></li>
                 </ul>
             </div>
@@ -19,14 +19,21 @@
 </div>
 
 <!-- Libs JS -->
-<script src="{{asset('dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('dist/libs/jquery/dist/jquery.slim.min.js')}}"></script>
 <script src="{{asset('dist/libs/peity/jquery.peity.min.js')}}"></script>
+<script src="{{asset('dist/libs/popper/popper.js')}}"></script>
+<script src="{{asset('dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('dist/libs/tail-select/tail.select-full.min.js')}}"></script>
+{{--<script src="{{asset('dist/js/bootstrap-select.min.js')}}"></script>--}}
 <!-- Tabler Core -->
 <script src="{{asset('dist/js/tabler.min.js')}}"></script>
+
+@stack('scripts')
+
 <script>
     // @formatter:off
     document.addEventListener("DOMContentLoaded", function () {
+        //alert(document.getElementById('articulosselect').value);
         window.ApexCharts && (new ApexCharts(document.getElementById('chart-revenue-bg'), {
             chart: {
                 type: "area",

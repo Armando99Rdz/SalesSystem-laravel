@@ -23,6 +23,8 @@
     <link href="{{asset('dist/css/tabler.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('dist/css/demo.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('dist/css/mycustom.css')}}" rel="stylesheet"/>
+    <link href="{{asset('dist/css/bootstrap-select.min.css')}}" rel="stylesheet"/>
+    <link rel="stylesheet" href="{{asset('dist/libs/tail-select/tail.select-default.min.css')}}">
     <style>
         body {
             display: none;

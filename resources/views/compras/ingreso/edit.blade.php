@@ -12,7 +12,7 @@
                     Compras
                 </div>
                 <h2 class="page-title">
-                    Editando proveedor {{$persona -> nombre}}
+                    Editando ingreso {{$persona -> nombre}}
                 </h2>
             </div>
         </div>
