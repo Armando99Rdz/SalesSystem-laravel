@@ -60,12 +60,12 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li >
-                                    <a class="dropdown-item" href="#" >
+                                    <a class="dropdown-item" href="/almacen/articulo" >
                                         Artículos
                                     </a>
                                 </li>
                                 <li >
-                                    <a class="dropdown-item" href="#" >
+                                    <a class="dropdown-item" href="/almacen/categoria" >
                                         Categorías
                                     </a>
                                 </li>
@@ -79,12 +79,12 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li >
-                                    <a class="dropdown-item" href="#" >
+                                    <a class="dropdown-item" href="/compras/ingreso" >
                                         Ingresos
                                     </a>
                                 </li>
                                 <li >
-                                    <a class="dropdown-item" href="#" >
+                                    <a class="dropdown-item" href="/compras/proveedor" >
                                         Proveedores
                                     </a>
                                 </li>
@@ -104,7 +104,7 @@
                                     </a>
                                 </li>
                                 <li >
-                                    <a class="dropdown-item" href="#" >
+                                    <a class="dropdown-item" href="/ventas/cliente" >
                                         Clientes
                                     </a>
                                 </li>

@@ -112,6 +112,8 @@ class IngresoController extends Controller {
             -> select('i.idingreso', 'i.fecha_hora', 'p.nombre', 'i.tipo_comprobante', 'i.serie_comprobante',
                 'i.num_comprobante', 'i.impuesto', 'i.estado', DB::raw('sum(di.cantidad * precio_compra) as total'))
             -> where('i.idingreso', '=', $id)
+            -> groupBy('i.idingreso', 'i.fecha_hora', 'p.nombre', 'i.tipo_comprobante', 'i.serie_comprobante',
+                    'i.num_comprobante', 'i.impuesto', 'i.estado')
             -> first(); # obten el primer ingreso de la consulta
 
         $detalles = DB::table('detalle_ingreso as d')

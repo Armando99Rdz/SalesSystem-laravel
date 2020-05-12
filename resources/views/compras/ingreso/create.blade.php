@@ -80,6 +80,9 @@
                     </div>
                     <div class="">
                         <div class="hr-text mb-2">Agregar artículo</div>
+                        <div id="alerts-div">
+
+                        </div>
                         <div class="row">
                             <div class="col-lg-12 col-xs-12">
                                 <div class="mb-2">
@@ -93,7 +96,7 @@
                                             </select>
                                         </div>
                                         <div class="col-auto ml-auto">
-                                            <button id="bt_add" class="btn btn-outline-primary" aria-label="Button">
+                                            <button id="btn_add_detalle" class="btn btn-outline-primary" type="button">
                                                 Agregar
                                             </button>
                                         </div>
@@ -103,7 +106,7 @@
                             <div class="col-lg-4 col-xs-12">
                                 <div class="mb-2">
                                     <label class="form-label required">Cantidad</label>
-                                    <input type="number" class="form-control" name="pcantidad" id="pcantidad" min="1">
+                                    <input type="number" class="form-control" name="pcantidad" id="pcantidad" min="1" value="1">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-xs-12">
@@ -127,7 +130,7 @@
                             <a href="/compras/ingreso" type="reset" class="btn btn-link link-secondary">
                                 Cancelar
                             </a>
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary" id="btn_finalizar">
                                 Finalizar
                             </button>
                         </div>
@@ -147,24 +150,18 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-vcenter table-bordered card-table">
+                        <table class="table table-vcenter table-bordered card-table" id="detallesTable">
                             <thead>
                                 <tr>
                                     <th>Artículo</th>
                                     <th>Cantidad</th>
-                                    <th>Precios</th>
+                                    <th>P.Compra</th>
+                                    <th>P.Venta</th>
                                     <th>Subtotal</th>
-                                    <th>Acciones</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Example</td>
-                                    <td>Example</td>
-                                    <td>Example</td>
-                                    <td>Example</td>
-                                    <td>Example</td>
-                                </tr>
+                            <tbody id="tbodyDetalles">
+                                <!-- registros -->
                             </tbody>
                         </table>
                     </div>
@@ -175,6 +172,7 @@
             </div>
         </div>
     </div>
+
     {{-- Input para trabajar con transaccpiones --}}
     <input type="text" name="_token" value="{{ csrf_token() }}" hidden>
 
@@ -182,44 +180,104 @@
 
     @push('scripts')
         <script>
-            // para select con busqueda
             tail.select('#pidarticulo', {
-                search: true
+                search: true,
+                classNames: 'd-block m-auto w-auto'
             });
-            /////////////////////////////////
+            /////////////////////////////////////////////////////////
 
-            /**
-             * Validaciones
-             */
-            document.getElementById('bt_add').addEventListener('click', function () {
-                addArticle();
+            document.getElementById('btn_add_detalle').addEventListener('click', function(){
+                agregarDetalle();
             });
 
-            var cont = 0;
-            var total = 0.0;
-            var subtotal = [];
-            var divfinalizar = document.getElementById('guardar');
-            var input_pidarticulo = document.getElementById('pidarticulo');
-            var input_pcantidad = document.getElementById('pcantidad');
-            var input_pprecio_compra = document.getElementById('pprecio_compra');
-            var input_pprecio_venta = document.getElementById('pprecio_venta');
-            divfinalizar.hidden = true;
+            let idarticulo_select = document.getElementById('pidarticulo');
+            let cantidad_input = document.getElementById('pcantidad');
+            let precio_compra_input = document.getElementById('pprecio_compra');
+            let precio_venta_input = document.getElementById('pprecio_venta');
+            let finalizar_btn = document.getElementById('btn_finalizar');
+            let alert_div = document.getElementById('alerts-div');
+            let totalText = document.getElementById('total');
+            let tbody = document.getElementById('tbodyDetalles');
+            let total = 0.0;
+            let cont = 0;
+            let subtotal = [];
 
-            function addArticle() {
-                let idarticulo = input_pidarticulo.value;
+            finalizar_btn.disabled = true;
 
+            function agregarDetalle(){
+
+                // conversiones
+                let idarticulo = idarticulo_select.value;
+                let articuloText = idarticulo_select.options[idarticulo_select.selectedIndex].text;
+                let cantidad = validarInt(cantidad_input.value);
+                let precio_compra = validarFloat(precio_compra_input.value);
+                let precio_venta = validarFloat(precio_venta_input.value);
+
+                if(!validar() || !cantidad || !precio_compra || !precio_venta){
+                    console.log("Datos NO válidos");
+                    let alert = '<div class="alert alert-danger alert-dismissible my-2" role="alert">' +
+                            '<p class="text-center">Imposible agregar detalle, revise los datos del artículo</p>' +
+                            '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a></div>'
+                    alert_div.innerHTML = alert;        
+                    return;
+                }
+
+                subtotal[cont] = (cantidad * precio_compra);
+                total += subtotal[cont];
+
+                let fila = '<tr id="fila'+cont+'"><td><a href="#" class="badge badge-danger" onclick="eliminar('+cont+')">&times;</a><input hidden name="idarticulo[]" value="'+idarticulo+'">'+articuloText+'</td><td><input class="form-control" type="number" name="cantidad[]" value="'+cantidad+'" min="1" style="width:80px"></td><td><input class="form-control" type="number" name="precio_compra[]" value="'+precio_compra+'" style="width:80px"></td><td><input class="form-control" type="number" name="precio_venta[]" value="'+precio_venta+'" style="width:80px"></td><td class="text-center">$'+subtotal[cont]+'</td></tr>';
+
+                cont++;
+                clearInputsArticulo();
+                totalText.innerText = total;
+                tbody.innerHTML += fila; 
+                mostrarBtnFinalizar();
+            }
+
+            function validar(){
+                if(idarticulo_select.value == "" || cantidad_input.value == "" || precio_venta_input.value == ""
+                || precio_compra_input.value == "" || cantidad_input.value <= 0 || precio_compra_input < 0 || precio_venta_input < 0)
+                    return false;
+                return true;
+            }
+
+            function eliminar(index){
+                console.log(index);
+                total = total - subtotal[index];
+                index = 'fila' + index;
+                document.getElementById(index).hidden = true;
+                totalText.innerText = total;
+                mostrarBtnFinalizar();
             }
 
             // limpiar inputs nuevo detalle/articulo
             function clearInputsArticulo() {
-                document.getElementById('pcantidad').value = 1;
-                document.getElementById('pprecio_compra').value = "";
-                document.getElementById('pprecio_venta').value = "";
+                cantidad_input.value = 1;
+                precio_compra_input.value = 0;
+                precio_venta_input.value = 0;    
             }
 
-            // mostrar botones para finalizar
-            function validation() {
-                divfinalizar.hidden = total <= 0;
+            // mostrar botones de finalizar
+            function mostrarBtnFinalizar() { finalizar_btn.disabled = total <= 0; }
+
+            function validarFloat(number){
+                let res;
+                try{ res = parseFloat(number); }
+                catch(e){
+                    console.log("Error al convetir dato " + number);
+                    return false;
+                }
+                return res;
+            }
+
+            function validarInt(number){
+                let res;
+                try{ res = parseInt(number); }
+                catch(e){
+                    console.log("Error al convertir dato" + number);
+                    return false;
+                }
+                return res;
             }
 
         </script>
