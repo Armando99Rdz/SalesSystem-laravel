@@ -122,16 +122,20 @@ class IngresoController extends Controller {
             -> where('d.idingreso', '=', $id)
             -> get();
 
-        # calculando ganacias    
+        # calculando ganacias y no. de articulos
         $gan_ventas = 0.0;
-        foreach($detalles as $detalle)
-            $gan_ventas += ($detalle -> precio_venta * $detalle -> cantidad);
+        $totalArts = 0;
+        foreach($detalles as $detalle) {
+            $gan_ventas += ($detalle->precio_venta * $detalle->cantidad);
+            $totalArts += $detalle -> cantidad;
+        }
         $ganancias = $gan_ventas - ($ingreso -> total);
 
         return view('compras.ingreso.show', [
             "ingreso" => $ingreso,
             "detalles" => $detalles,
-            "ganancias" => $ganancias
+            "ganancias" => $ganancias,
+            "totalarticulos" => $totalArts
         ]);
     }
 

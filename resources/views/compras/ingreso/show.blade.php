@@ -11,12 +11,12 @@
                     Compras
                 </div>
                 <h2 class="page-title">
-                    Ingreso No.{{$ingreso -> idingreso}} 
+                    Ingreso No.{{$ingreso -> idingreso}}
                     @if($ingreso -> estado == "C")
                         <span class="badge bg-red-lt">Cancelado</span>
                     @elseif($ingreso -> estado == "A")
                         <span class="badge bg-lime-lt">Activo</span>
-                    @endif 
+                    @endif
                 </h2>
             </div>
         </div>
@@ -47,14 +47,14 @@
                     </div>
                     <div class="mb-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-md mr-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><circle cx="5" cy="12" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle></svg>
-                        Serie y no. comprobante: <strong>{{$ingreso -> serie_comprobante}}</strong> 
+                        Serie y no. comprobante: <strong>{{$ingreso -> serie_comprobante}}</strong>
                         @if(!empty($ingreso -> num_comprobante))
                             - <strong>{{$ingreso -> num_comprobante}}</strong>
-                        @endif 
+                        @endif
                     </div>
                     <div class="mb-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-md mr-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><circle cx="9" cy="19" r="2"></circle><circle cx="17" cy="19" r="2"></circle><path d="M3 3h2l2 12a3 3 0 0 0 3 2h7a3 3 0 0 0 3 -2l1 -7h-15.2"></path></svg>
-                        Total de artículos: <strong>{{count($detalles)}}</strong>
+                        Total de artículos: <strong>{{$totalarticulos}}</strong>
                     </div>
                     <div class="mb-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-md mr-1" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"></path><polyline points="3 17 9 11 13 15 21 7"></polyline><polyline points="14 7 21 7 21 14"></polyline></svg>

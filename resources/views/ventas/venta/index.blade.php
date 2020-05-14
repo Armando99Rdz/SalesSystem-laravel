@@ -58,7 +58,7 @@
                             <strong>{{$v -> fecha_hora}}</strong>
                         </td>
                         <td class="text-bold">
-                            {{$v -> tipo_comprobante . ': ' . $v -> serie_comprobante . '-' . $v -> num_comprobante}}
+                            {{$v -> tipo_comprobante . ': ' . $v -> num_comprobante . '-' . $v -> serie_comprobante}}
                         </td>
                         <td class="text-bold">
                             {{$v -> impuesto}}
@@ -77,9 +77,9 @@
                             @endif
                         </td>
                         <td class="text-bold">
-                            <a href="{{ URL::action( 'VentaController@show', $v -> idventa ) }}" class="m-2">Detalles</a>
+                            <a href="{{ URL::action( 'VentaController@show', $v->idventa)}}" class="m-2">Detalles</a>
                             <a href="#" class="link-danger m-2" data-toggle="modal"
-                               data-target="#confirm-delete-{{$v -> idventa}}">Eliminar
+                               data-target="#confirm-delete-{{$v->idventa}}">Eliminar
                             </a>
                         </td>
                     </tr>

@@ -57,6 +57,7 @@ class VentaController extends Controller
                 DB::raw('(SELECT precio_venta FROM detalle_ingreso as di WHERE di.idarticulo = art.idarticulo
                 ORDER BY di.iddetalle_ingreso DESC LIMIT 1) as precio_venta')) // obteniendo el ultimo precio_venta del articulo
             -> where('art.stock', '>', '0') // solo articulos con stock
+            -> where('art.estado', '=' , 'Activo')
             -> orderBy(DB::raw('-precio_venta'), 'desc') # ordena los precio_venta nulos al final
             -> get();
 
@@ -126,8 +127,8 @@ class VentaController extends Controller
     # mostrar detalles de un ingreso
     public function show($id){
         $venta = DB::table('venta as v')
-            -> join('persona as p', 'v.idcliente', '=', 'p.idpersona')
             -> join('detalle_venta as dv', 'v.idventa', '=', 'dv.idventa')
+            -> leftJoin('persona as p', 'v.idcliente', '=', 'p.idpersona')
             -> select('v.idventa', 'v.fecha_hora', 'p.nombre', 'v.tipo_comprobante', 'v.serie_comprobante',
                 'v.num_comprobante', 'v.impuesto', 'v.estado', 'v.total_venta')
             -> where('v.idventa', '=', $id)
@@ -135,15 +136,20 @@ class VentaController extends Controller
             #   'i.num_comprobante', 'i.impuesto', 'i.estado')
             -> first(); # obten el primer ingreso de la consulta
 
-        $detalles = DB::table('detalle_ingreso as d')
+        $detalles = DB::table('detalle_venta as d')
             -> join('articulo as a', 'd.idarticulo', '=', 'a.idarticulo')
-            -> select('d.iddetalle_ingreso', 'a.nombre as articulo', 'd.cantidad', 'd.descuento', 'd.precio_venta')
+            -> select('a.nombre as articulo', 'd.cantidad', 'd.descuento', 'd.precio_venta')
             -> where('d.idventa', '=', $id)
             -> get();
 
+        $totalArts = 0;
+        foreach ($detalles as $d)
+            $totalArts += $d -> cantidad;
+
         return view('ventas.venta.show', [
-            "ingreso" => $venta,
-            "detalles" => $detalles
+            "venta" => $venta,
+            "detalles" => $detalles,
+            "totalarticulos" => $totalArts
         ]);
     }
 
