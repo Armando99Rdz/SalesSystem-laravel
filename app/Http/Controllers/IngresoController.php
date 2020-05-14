@@ -118,13 +118,20 @@ class IngresoController extends Controller {
 
         $detalles = DB::table('detalle_ingreso as d')
             -> join('articulo as a', 'd.idarticulo', '=', 'a.idarticulo')
-            -> select('a.nombre as articulo', 'd.cantidad', 'd.precio_compra', 'd.precio_venta')
+            -> select('d.iddetalle_ingreso', 'a.nombre as articulo', 'd.cantidad', 'd.precio_compra', 'd.precio_venta')
             -> where('d.idingreso', '=', $id)
             -> get();
 
+        # calculando ganacias    
+        $gan_ventas = 0.0;
+        foreach($detalles as $detalle)
+            $gan_ventas += ($detalle -> precio_venta * $detalle -> cantidad);
+        $ganancias = $gan_ventas - ($ingreso -> total);
+
         return view('compras.ingreso.show', [
             "ingreso" => $ingreso,
-            "detalles" => $detalles
+            "detalles" => $detalles,
+            "ganancias" => $ganancias
         ]);
     }
 

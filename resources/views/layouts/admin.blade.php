@@ -99,8 +99,13 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li >
-                                    <a class="dropdown-item" href="#" >
-                                        Ventas
+                                    <a class="dropdown-item" href="/ventas/venta/create" >
+                                        Nueva
+                                    </a>
+                                </li>
+                                <li >
+                                    <a class="dropdown-item" href="/ventas/venta" >
+                                        Listar
                                     </a>
                                 </li>
                                 <li >
