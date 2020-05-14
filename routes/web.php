@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('auth/login');
 });
 
 
@@ -29,3 +30,7 @@ Route::resource('compras/proveedor', 'ProveedorController');
 Route::resource('compras/ingreso', 'IngresoController');
 
 Route::resource('ventas/venta', 'VentaController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
