@@ -71,7 +71,10 @@ class RegisterController extends Controller
         ]);
     }
 
+    # En caso de no querer permitir a los usuarios darse de alta en el sistema por sí
+    # solos, redirijiendo al login a cualquiera que intente entrar al formulario de registro.
+    /*
     public function showRegistrationForm() {
         return redirect('login');
-    }
+    }*/
 }

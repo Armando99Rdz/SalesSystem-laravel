@@ -12,7 +12,11 @@ use Illuminate\Database\Eloquent\ModelNotFoundException; // para las excepciones
 class CategoriaController extends Controller {
 
     public function __construct(){
-
+        /**
+         * Agregando middleware de autenticacion de usuarios. Permitirá restringir el acceso a
+         * usuarios si previamente no fueron autenticados redireccionando al login.
+         */
+        $this -> middleware('auth');
     }
 
     public function index(Request $request){

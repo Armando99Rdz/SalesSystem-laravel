@@ -16,7 +16,6 @@
     </div>
 </footer>
 </div>
-</div>
 
 <!-- Libs JS -->
 <script src="{{asset('dist/libs/jquery/dist/jquery.slim.min.js')}}"></script>
