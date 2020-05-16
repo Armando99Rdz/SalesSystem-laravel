@@ -36,6 +36,9 @@ Route::resource('compras/ingreso', 'IngresoController');
 # modulo ventas: vender productos/articulos
 Route::resource('ventas/venta', 'VentaController');
 
+# modulo crud de usuarios
+Route::resource('security/usuario', 'UsuarioController');
+
 # Autenticacion y gestion de Usuarios
 # para error al cerrar sesion:
 Route::get('/logout', 'Auth\LoginController@logout') -> name('logout');
@@ -46,3 +49,5 @@ Auth::routes();
 # Landing page / info page de la aplicacion
 Route::get('/home', 'HomeController@index')->name('home');
 
+# en caso de no existir la ruta redirije a home
+Route::get('/{slug?}', 'HomeController@index');

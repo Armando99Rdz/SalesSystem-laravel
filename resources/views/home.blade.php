@@ -1,3 +1,9 @@
+<meta http-equiv="refresh" content="0; ventas/venta/create">
+
+{{--
+
+Página inicial/bienvenida por defecto de laravel
+
 @extends('layouts.app')
 
 @section('content')
@@ -23,3 +29,5 @@
     </div>
 </div>
 @endsection
+
+ --}}
