@@ -54,10 +54,8 @@
                     <div class="mb-3">
                         <label class="form-label required">Tipo de identificación</label>
                         <select name="tipo_documento" class="form-select">
+                            <option value="RFC/NIT">RFC/NIT</option>
                             <option value="INE/DNI">INE/DNI</option>
-                            <option value="RFC">RFC</option>
-                            <option value="INAPAM">INAPAM</option>
-                            <option value="Pasaporte">Pasaporte</option>
                         </select>
                     </div>
                 </div>
