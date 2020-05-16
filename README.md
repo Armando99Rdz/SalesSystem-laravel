@@ -10,5 +10,12 @@
     - /compras/proveedor
     - /compras/ingreso
     - /ventas/venta
+    - /security/usuario
+
+## modulos
+- Almacen 
+- Ventas
+- Compras
+- Usuarios
 
 `php artisan serve` 
