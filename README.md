@@ -4,6 +4,7 @@
 ![demo-categorias-view]( ss-categorias.png )
 
 ### routes
+    - /home
     - /almacen/categoria
     - /almacen/articulo
     - /ventas/cliente   

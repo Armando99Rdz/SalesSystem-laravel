@@ -20,6 +20,7 @@
 <!-- Libs JS -->
 <script src="{{asset('dist/libs/jquery/dist/jquery.slim.min.js')}}"></script>
 <script src="{{asset('dist/libs/peity/jquery.peity.min.js')}}"></script>
+<script src="{{asset('dist/libs/apexcharts/dist/apexcharts.min.js')}}"></script>
 <script src="{{asset('dist/libs/popper/popper.js')}}"></script>
 <script src="{{asset('dist/libs/bootstrap/dist/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{asset('dist/libs/tail-select/tail.select-full.min.js')}}"></script>

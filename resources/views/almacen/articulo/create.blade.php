@@ -70,20 +70,6 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="mb-3">
-                        <label class="form-label required">Stock</label>
-                        <input type="number" class="form-control" min="1" name="stock" value="{{old('stock')}}">
-                        <small class="form-hint">Cantidad de producto en almacén</small>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="mb-3">
-                        <label class="form-label">Descripción</label>
-                        <textarea class="form-control" rows="2" name="descripcion">{{old('descripcion')}}</textarea>
-                        <small class="form-hint">Algunas características del producto</small>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="mb-3">
                         <div class="form-label">Subir imagen</div>
                         <div class="form-file">
                             <input type="file" class="form-file-input" name="imagen">
@@ -92,6 +78,13 @@
                                 <span class="form-file-button">Buscar</span>
                             </label>
                         </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="mb-3">
+                        <label class="form-label">Descripción</label>
+                        <textarea class="form-control" rows="2" name="descripcion">{{old('descripcion')}}</textarea>
+                        <small class="form-hint">Algunas características del producto</small>
                     </div>
                 </div>
             </div>

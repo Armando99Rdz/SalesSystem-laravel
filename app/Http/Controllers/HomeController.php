@@ -43,10 +43,44 @@ class HomeController extends Controller
             -> where('fecha_hora', '>=', DB::raw('DATE(NOW()) - INTERVAL 7 DAY'))
             -> where('i.estado', '=', 'A')
             -> first();
+        # obtener el articulo menos vendido
+        $articuloMenosVendido = DB::table('articulo as a')
+            -> join('detalle_venta as dv', 'dv.idarticulo', '=', 'a.idarticulo')
+            -> select('a.idarticulo', 'a.nombre', 'a.codigo', 'a.stock', 'a.imagen',
+                DB::raw('SUM(dv.cantidad) as total'))
+            -> groupBy('a.idarticulo', 'a.nombre', 'a.codigo', 'a.stock', 'a.imagen')
+            -> orderBy('total', 'ASC')
+            -> first();
+        # obtener el articulo mas vendido
+        $articuloMasVendido = DB::table('articulo as a')
+            -> join('detalle_venta as dv', 'dv.idarticulo', '=', 'a.idarticulo')
+            -> select('a.idarticulo', 'a.nombre', 'a.codigo', 'a.stock', 'a.imagen',
+                DB::raw('SUM(dv.cantidad) as total'))
+            -> groupBy('a.idarticulo', 'a.nombre', 'a.codigo', 'a.stock', 'a.imagen')
+            -> orderBy('total', 'DESC')
+            -> first();
+        $listaArticulos = DB::table('articulo as a')
+            -> join('detalle_venta as dv', 'dv.idarticulo', '=', 'a.idarticulo')
+            -> select('a.idarticulo', 'a.nombre', 'a.codigo', 'a.stock', 'a.imagen',
+                DB::raw('SUM(dv.cantidad) as total'))
+            -> groupBy('a.idarticulo', 'a.nombre', 'a.codigo', 'a.stock', 'a.imagen')
+            -> orderBy('total', 'DESC')
+            -> get();
+        $listaArticulos2 = DB::table('articulo as a')
+            -> join('detalle_venta as dv', 'dv.idarticulo', '=', 'a.idarticulo')
+            -> select('a.idarticulo', 'a.nombre', 'a.codigo', 'a.stock', 'a.imagen',
+                DB::raw('SUM(dv.cantidad) as total'))
+            -> groupBy('a.idarticulo', 'a.nombre', 'a.codigo', 'a.stock', 'a.imagen')
+            -> orderBy('total', 'ASC')
+            -> get();
 
         return view('home', [
             "ultimasVentas" => $totalUltimasVentas,
-            "ultimosGastos" => $totalUltimosGastos
+            "ultimosGastos" => $totalUltimosGastos,
+            "menosVendido" => $articuloMenosVendido,
+            "masVendido" => $articuloMasVendido,
+            "articulos" => $listaArticulos,
+            "articulos2" => $listaArticulos2
         ]);
     }
 }

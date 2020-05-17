@@ -26,7 +26,6 @@ class ArticuloFormRequest extends FormRequest
             'idcategoria' => 'required',
             'codigo' => 'required|max:50',
             'nombre' => 'required|max:100',
-            'stock' => 'required|numeric',
             'descripcion' => 'max:512', // opcional
             'imagen' => 'mimes:jpeg,png,jpg,gif|max:1000' // formato de imagenes permitidas
         ];

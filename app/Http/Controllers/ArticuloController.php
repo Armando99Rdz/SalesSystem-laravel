@@ -56,7 +56,7 @@ class ArticuloController extends Controller
         $articulo -> idcategoria = $request -> get('idcategoria');
         $articulo -> codigo = $request ->get('codigo');
         $articulo -> nombre = $request -> get('nombre');
-        $articulo -> stock = $request -> get('stock');
+        $articulo -> stock = 0;
         $articulo -> descripcion = $request -> get('descripcion');
         $articulo -> estado = 'Activo'; # cuando se crea el articulo, por defecto esta activo
 
