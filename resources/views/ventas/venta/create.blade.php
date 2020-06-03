@@ -42,6 +42,18 @@
         </div>
     @endif
 
+    <div class="row">
+        <div class="col-md-5 m-auto">
+            {{-- Si hay un mensaje de éxito --}}
+            @if(session('message'))
+                <div class="alert alert-success alert-dismissible text-center" role="alert">
+                    {{ session('message') }}
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                </div>
+            @endif
+
+        </div>
+    </div>
 
     {!! Form::open( array(
                     'url' => 'ventas/venta',

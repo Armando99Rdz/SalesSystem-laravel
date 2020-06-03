@@ -20,8 +20,8 @@
     <link rel="shortcut icon" href="{{asset('favicon.ico')}}" type="image/x-icon"/>
     <!-- CSS files -->
     <link href="{{asset('dist/libs/jqvmap/dist/jqvmap.min.css')}}" rel="stylesheet"/>
-    <link href="{{asset('dist/css/tabler.min.css')}}" rel="stylesheet"/>
-    <link href="{{asset('dist/css/demo.min.css')}}" rel="stylesheet"/>
+    <!--<link href="{{--asset('dist/css/tabler.css')--}}" rel="stylesheet"/>-->
+    <!--<link href="{{--asset('dist/css/demo.min.css')--}}" rel="stylesheet"/>-->
     <link href="{{asset('dist/css/mycustom.css')}}" rel="stylesheet"/>
     <link href="{{asset('dist/css/bootstrap-select.min.css')}}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{asset('dist/libs/tail-select/tail.select-default.min.css')}}">

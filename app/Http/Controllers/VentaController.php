@@ -125,9 +125,14 @@ class VentaController extends Controller
             DB::rollBack(); # en caso del error, anula la transaccion con rollback().
             $this -> estadoInsercion = "error";
             return Redirect::to('ventas/venta/create');
+
         }
         $this -> estadoInsercion = "success";
-        return Redirect::to('ventas/venta/create');
+        #return Redirect::to('ventas/venta/create');
+        return \redirect('ventas/venta/create')
+            -> with([
+                'message' => 'Venta realizada correctamente.'
+            ]);
     }
 
     # mostrar detalles de un ingreso
