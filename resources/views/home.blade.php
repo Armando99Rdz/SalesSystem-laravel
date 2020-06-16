@@ -95,7 +95,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="h1 mb-0 mr-2">{{$numVentasUltimosDias->total}}</div>
+                    @if (!empty($numVentasUltimosDias))
+                        <div class="h1 mb-0 mr-2">{{$numVentasUltimosDias->total}}</div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -111,7 +113,9 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-baseline">
-                        <div class="h1 mb-0 mr-2">{{$numIngresosUltimosDias->total}}</div>
+                        @if(!empty($numIngresosUltimosDias))
+                            <div class="h1 mb-0 mr-2">{{$numIngresosUltimosDias->total}}</div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -129,9 +133,10 @@
                                 </div>
                             </div>
                             <div class="py-4 text-center">
+                                @if(!empty($menosVendido))
                                 <span class="avatar avatar-xl mb-4"
                                       style="background-image: url({{asset('imagenes/articulos/'.$menosVendido->imagen)}})">
-                            </span>
+                                </span>
                                 <h3 class="mb-0">{{$menosVendido->nombre}}</h3>
                                 <p class="text-muted mb-0">{{$menosVendido->codigo}}</p>
                                 <p class="text-muted mb-2">{{$menosVendido->stock}} en stock</p>
@@ -153,6 +158,7 @@
                                         @endforeach
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -166,9 +172,10 @@
                                 </div>
                             </div>
                             <div class="py-4 text-center">
+                                @if(!empty($masVendido))
                                 <span class="avatar avatar-xl mb-4"
-                                      style="background-image: url({{asset('imagenes/articulos/'.$masVendido->imagen)}})">
-                            </span>
+                                    style="background-image: url({{asset('imagenes/articulos/'.$masVendido->imagen)}})">
+                                </span>
                                 <h3 class="mb-0">{{$masVendido->nombre}}</h3>
                                 <p class="text-muted mb-0">{{$masVendido->codigo}}</p>
                                 <p class="text-muted mb-2">{{$masVendido->stock}} en stock</p>
@@ -190,6 +197,7 @@
                                         @endforeach
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>

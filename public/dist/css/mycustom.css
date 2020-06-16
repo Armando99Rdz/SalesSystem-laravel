@@ -33,8 +33,9 @@
     --bs-danger: #fc3d39;
     --bs-light: #f5f7fb;
     --bs-dark: #2C2C2E;
-    --bs-font-sans-serif: -apple-system;
-    /*--bs-font-sans-serif: "Ubuntu", system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;*/
+    /**--bs-font-sans-serif: -apple-system;**/
+    --bs-font-sans-serif: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, 
+    Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji, "Ubuntu", system-ui;
     --bs-font-monospace: Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace; }
 
 *,
